@@ -16,9 +16,8 @@
 
         <!-- <a v-on:click.prevent="" href="www.google.com"> Google</a> -->
         <a v-on:click="naoNavegar" href="www.google.com"> Google</a>
-        <hr>
 
-        <input type="text" v-on:keyup.enter="exibirAlerta"/>
+        <input type="text" v-on:keyup="exibirAlerta"/>
 
     </div>
     <script>
@@ -42,7 +41,7 @@
                     event.preventDefault();
                 },
                 exibirAlerta(){
-                    alert('teste de teclado')
+                    alert('exindo alerta')
                 }               
 
             }
