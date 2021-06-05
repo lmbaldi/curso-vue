@@ -27,7 +27,17 @@ new Vue({
         hurt(atr, min, max, special){
           const plus = special ? 5 : 0
           const hurt = this.getRandom(min + plus, max + plus)
-          this[atr] = Math.max(this.playerLife - hurt, 0)  //math.max para evitar numero negativo
+          this[atr] = Math.max(this[atr] - hurt, 0)  //math.max para evitar numero negativo
+        },
+
+        heal(min, max){
+            const heal = this.getRandom(min, max)
+            this.playerLife = Math.min(this.playerLife + heal, 100)
+        },
+
+        healAndHurt(){
+            this.heal(10,15)
+            this.hurt('playerLife', 7, 12, false)
         },
 
         getRandom(min, max){
