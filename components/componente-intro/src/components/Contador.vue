@@ -31,7 +31,7 @@ export default {
 <style>
 
     .contador span {
-        border-bottom: 30px solid;
+        border-bottom: 30px;
         height: 30px;
         padding: 5px 25px;
     }
