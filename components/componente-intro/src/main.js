@@ -1,4 +1,10 @@
-import { createApp } from 'vue'
+import Vue from 'vue'
 import App from './App.vue'
+import Contador from './components/Contador'
 
-createApp(App).mount('#app')
+Vue.config.productionTip = false
+Vue.component('app-contador', Contador)
+
+new Vue({
+  render: h => h(App),
+}).$mount('#app')
