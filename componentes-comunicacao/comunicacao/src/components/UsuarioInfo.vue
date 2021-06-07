@@ -5,9 +5,11 @@
     <p>
       Nome do Usuario: <strong> {{ inverterNome() }} </strong>
     </p>
+    <p>
+      Idade do Usuário: <strong> {{ idade }}</strong>
+    </p>
     <button @click="reiniciarNome">Reiniciar Nome</button>
     <button @click="reiniciarFn()">Reiniciar Nome (Callback)</button>
-
   </div>
 </template>
 
@@ -22,7 +24,8 @@ export default {
       //    return Array(10).fill(0).join(', ');
       //}
     },
-    reiniciarFn: Function
+    reiniciarFn: Function,
+    idade: Number,
   },
 
   methods: {
