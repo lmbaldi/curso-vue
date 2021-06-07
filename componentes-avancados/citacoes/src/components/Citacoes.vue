@@ -54,4 +54,9 @@ export default {
   flex-direction: column;
   align-items: center;
 }
+
+h2{
+    color:red;
+}
+
 </style>
