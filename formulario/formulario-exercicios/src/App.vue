@@ -2,7 +2,7 @@
   <div id="app">
     <h1>Registrar Reclamação</h1>
     <div class="conteudo">
-      <form class="painel">
+      <form class="painel" v-if="!enviado">
         <div class="cabecalho">Formulário</div>
         <Rotulo nome="E-mail">
           <!--lazy envia a informacao depois que sai do campo -->
@@ -61,12 +61,13 @@
           </select>
         </Rotulo>
         <Rotulo nome="Primeira Reclamação?">
-          <Escolha v-model="escolha"/>
+          <Escolha v-model="escolha" />
         </Rotulo>
         <hr />
-        <button>Enviar</button>
+        <button @click.prevent="enviar">Enviar</button>
       </form>
-      <div class="painel">
+      <!-- painel -->
+      <div class="painel" v-else>
         <div class="cabecalho">Resultado</div>
         <Rotulo nome="E-mail">
           <span>{{ usuario.email }}</span>
@@ -113,23 +114,29 @@ export default {
       return typeof this.usuario.idade;
     },
   },
+  methods: {
+    enviar() {
+		this.enviado = true
+	},
+  },
   data() {
     return {
-      mensagem: '',
+      mensagem: "",
       caracteristicas: [],
-      produto: 'web',
+      produto: "web",
       prioridade: 1,
       prioridades: [
-        { codigo: 1, nome: 'Baixa' },
-        { codigo: 2, nome: 'Moderada' },
-        { codigo: 3, nome: 'Alta' },
+        { codigo: 1, nome: "Baixa" },
+        { codigo: 2, nome: "Moderada" },
+        { codigo: 3, nome: "Alta" },
       ],
       usuario: {
-        email: '',
-        senha: '',
+        email: "",
+        senha: "",
         idade: 20,
       },
       escolha: true,
+      enviado: false,
     };
   },
 };
