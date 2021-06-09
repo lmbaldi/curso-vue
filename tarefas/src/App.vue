@@ -7,16 +7,18 @@
 
 <script>
 import TaskGrid from './components/TaskGrid.vue'
+
 export default {
-	components:{ TaskGrid },
+	components: { TaskGrid },
 	data(){
 		return {
 			tasks: [
 				{name: 'Lavar a louça', pending: false},
-				{name: ' Comprar blusa', pending: true},
+				{name: 'Comprar blusa', pending: true},
 			]
 		}
 	}
+
 }
 </script>
 
