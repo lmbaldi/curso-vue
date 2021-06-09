@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <h1>Tarefas</h1>
+	<TaksProgress :progress="progress"/>
     <NewTask @taskAdded="addTask" />
     <TaskGrid
       :tasks="tasks"
@@ -11,20 +12,29 @@
 </template>
 
 <script>
-import NewTask from "./components/NewTask.vue";
-import TaskGrid from "./components/TaskGrid.vue";
+import TaksProgress from "./components/TaskProgress.vue"
+import NewTask from "./components/NewTask.vue"
+import TaskGrid from "./components/TaskGrid.vue"
 
 export default {
-  components: { NewTask, TaskGrid },
+  components: { TaksProgress, NewTask, TaskGrid },
   data() {
     return {
       tasks: [],
     };
   },
+  computed: {
+    progress() {
+      const total = this.tasks.length
+      const done = this.tasks.filter((t) => !t.pending).length
+      return Math.round(done / total * 100) || 0
+    },
+  },
+  
   methods: {
     addTask(task) {
       //verifica se  nome jah esta na lista
-      const sameName = (t) => t.name === task.name;
+      const sameName = (t) => t.name === task.name
       //faz um filtro  de todas as tasks pra ver se tem um mesmo nome
       const reallyNew = this.tasks.filter(sameName).length == 0;
       // testar pra ver se realmente um novo nome
