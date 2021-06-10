@@ -2,9 +2,9 @@
   <div id="app">
     <h1>Filtros & Mixins</h1>
     <hr />
-	<p>{{ cpfUsuario | cpf | inverter}}</p>
-    
-  </div>
+    <p>{{ cpfUsuario | cpf | inverter }}</p>
+    <input type="text" :value="cpfUsuario | cpf" />
+  </div> 
 </template>
 
 <script>
@@ -35,5 +35,8 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
   font-size: 2.5rem;
+}
+input {
+  font-size: 2.5rm;
 }
 </style>
