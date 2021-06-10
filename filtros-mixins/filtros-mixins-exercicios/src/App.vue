@@ -2,6 +2,7 @@
   <div id="app">
     <h1>Filtros & Mixins</h1>
     <hr />
+	<p>{{ cpfUsuario | cpf | inverter}}</p>
     
   </div>
 </template>
@@ -19,7 +20,7 @@ export default {
   },
   data() {
     return {
-      cpf: "01234567890",
+      cpfUsuario: "01234567890",
     };
   },
 };
