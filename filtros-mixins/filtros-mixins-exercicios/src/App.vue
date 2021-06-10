@@ -39,6 +39,10 @@ export default {
       frutas: ["abacate"],
     };
   },
+  created() {
+    // eslint-disable-next-line no-console
+    console.log("Created - App.vue!");
+  },
 };
 </script>
 
