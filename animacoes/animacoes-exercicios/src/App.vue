@@ -1,12 +1,13 @@
 <template>
   <div id="app" class="container-fluid">
     <h1>Animações</h1>
-	<hr>
-	<b-button variant="prymary" class="mb-4"
-		@click="exibir = !exibir">Mostrar Mensagem</b-button>
-	<transition name="fade">
-		<b-alert variant="info" show v-if="exibir">{{ msg }}</b-alert>
-	</transition>	
+    <hr />
+    <b-button variant="prymary" class="mb-4" @click="exibir = !exibir"
+      >Mostrar Mensagem</b-button
+    >
+    <transition name="fade">
+      <b-alert variant="info" show v-if="exibir">{{ msg }}</b-alert>
+    </transition>
   </div>
 </template>
 
@@ -32,29 +33,12 @@ export default {
   font-size: 1.5rem;
 }
 
-.fade-enter{
-
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 
-.fade-enter-active{
-
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 2s;
 }
-
-.fade-enter-to{
-
-}
-
-.fade-leave{
-
-}
-
-.fade-leave-active{
-
-}
-
-.fade-leave-to{
-	
-}
-
 
 </style>
