@@ -5,27 +5,48 @@
     <p v-text="'Usando diretiva <strong>v-html</strong>'"></p>
 
     <p v-html="'Usando diretiva <strong>v-html</strong>'"></p>
-    <hr>
+    <hr />
     <!-- <p v-destaque>Usando diretiva personalizada</p> -->
-	<p v-destaque="'red'">Usando diretiva personalizada</p>
+    <p v-destaque="'red'">Usando diretiva personalizada</p>
 
-	<p v-destaque.atrasar="cor">Usando diretiva personalizada</p>
+    <p v-destaque.atrasar="cor">Usando diretiva personalizada</p>
 
-	<p v-destaque:fundo="'lightblue'">Usando diretiva personalizada</p>
+    <p v-destaque:fundo="'lightblue'">Usando diretiva personalizada</p>
 
-  <p v-destaque:fundo.atrasar="'grey'">Usando diretiva personalizada</p>
+    <p v-destaque:fundo.atrasar="'grey'">Usando diretiva personalizada</p>
 
-	
+    <p v-destaque-local:fundo="'lightblue'">Usando diretiva personalizada</p>
+
+    <p v-destaque-local:fundo.atrasar="'grey'">Usando diretiva personalizada</p>
   </div>
 </template>
 
 <script>
 export default {
-	data(){
-		return {
-			cor: 'blue'
-		}
-	}
+  components: {},
+  directives: {
+    "destaque-local": {
+      bind(el, binding, vnode) {
+        // el.style.backgroundColor = 'lightgreen'
+
+        let atraso = 0;
+        if (binding.modifiers["atrasar"]) atraso = 3000;
+
+        setTimeout(() => {
+          if (binding.arg === "fundo") {
+            el.style.backgroundColor = binding.value;
+          } else {
+            el.style.color = binding.value;
+          }
+        }, atraso);
+      },
+    },
+  },
+  data() {
+    return {
+      cor: "blue",
+    };
+  },
 };
 </script>
 
