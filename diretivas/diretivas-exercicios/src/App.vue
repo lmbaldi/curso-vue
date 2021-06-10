@@ -19,8 +19,7 @@
       Usando diretiva personalizada
     </p>
 
-    <p v-destaque-local:fundo.atrasar.alternar="
-    {cor1: 'PaleTurquoise', cor2: 'PaleGoldenrod', atraso: 2000, intervalo: 2000 }">
+    <p v-destaque-local:fundo.atrasar.alternar="{cor1: 'PaleTurquoise', cor2: 'PaleGoldenrod', atraso: 2000, intervalo: 2000 }">
       Usando diretiva personalizada
     </p>
 
@@ -33,14 +32,15 @@ export default {
   components: {},
   directives: {
     "destaque-local": {
+      // eslint-disable-next-line no-unused-vars
       bind(el, binding, vnode) {
         const aplicarCor = (cor) => {
           if (binding.arg === "fundo") {
-            el.style.backgroundColor = cor;
+            el.style.backgroundColor = cor
           } else {
-            el.style.color = cor;
+            el.style.color = cor
           }
-        };
+        }
         let atraso = 0;
         if (binding.modifiers["atrasar"]) atraso = binding.value.atraso;
 
