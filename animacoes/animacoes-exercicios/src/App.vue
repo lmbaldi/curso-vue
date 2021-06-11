@@ -34,7 +34,7 @@
     </transition>
 
     <hr />
-    <button @click="exibir2 = !exibir2">Mostrar</button>
+    <button @click="exibir2 = !exibir2">Alternar</button>
     <transition
       :css="false"
       @before-enter="beforeEnter"
@@ -59,36 +59,49 @@ export default {
       exibir: false,
       exibir2: true,
       tipoAnimacao: "fade",
+      larguraBase: 0,
     };
   },
   methods: {
-    beforeEnter(el) {
-      console.log("beforeEnter");
-    },
-    enter(el, done) {
-      console.log("enter");
-      done()
-    },
-    afterEnter(el) {
-      console.log("afterEnter");
-    },
-    enterCanceled() {
-      console.log("enterCanceled");
+    animar(el, done, negativo){
+       let rodada = 1;
+      const temporizador = setInterval(() => {
+        const novaLargura = this.larguraBase +(negativo ? -rodada * 10 : rodada * 10)
+        el.style.width = `${novaLargura}px`;
+        rodada++;
+        if (rodada > 30) {
+          clearInterval(temporizador);
+          done();
+        }
+      }, 20);
     },
 
-	beforeLeave(el) {
-      console.log("beforeleave");
+    beforeEnter(el) {
+      this.larguraBase = 0;
+      el.style.width = `${this.larguraBase}px`;
+    },
+    enter(el, done) {
+     this.animar(el, done, false)
+    },
+    // afterEnter(el) {
+    //   console.log("afterEnter");
+    // },
+    // enterCanceled() {
+    //   console.log("enterCanceled");
+    // },
+    beforeLeave(el) {
+      this.larguraBase = 300;
+      el.style.width = `${this.larguraBase}px`;
     },
     leave(el, done) {
-      console.log("leave");
-      done()
+      this.animar(el, done, true)
     },
-    afterLeave(el) {
-      console.log("afterleave");
-    },
-    leaveCanceled() {
-      console.log("leaveCanceled");
-    },
+    // afterLeave(el) {
+    //   console.log("afterleave");
+    // },
+    // leaveCanceled() {
+    //   console.log("leaveCanceled");
+    // },
   },
 };
 </script>
