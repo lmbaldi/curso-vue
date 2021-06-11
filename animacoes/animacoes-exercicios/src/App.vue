@@ -1,11 +1,12 @@
+/* eslint-disable no-console */
 <template>
   <div id="app" class="container-fluid">
     <h1>Animações</h1>
-     <hr />
+    <hr />
     <b-button variant="prymary" class="mb-4" @click="exibir = !exibir">
       Mostrar Mensagem
     </b-button>
-<!--
+
     <transition name="fade" appear>
       <b-alert variant="info" show v-if="exibir">{{ msg }}</b-alert>
     </transition>
@@ -19,7 +20,7 @@
       leave-active-class="animated shake"
     >
       <b-alert variant="info" show v-show="exibir">{{ msg }}</b-alert>
-    </transition> -->
+    </transition>
 
     <hr />
     <b-select v-model="tipoAnimacao" class="mb-4">
@@ -31,6 +32,21 @@
       <b-alert variant="info" show v-if="exibir" key="info">{{ msg }}</b-alert>
       <b-alert variant="warning" show v-else key="warning">{{ msg }}</b-alert>
     </transition>
+
+    <hr />
+    <button @click="exibir2 = !exibir2">Mostrar</button>
+    <transition
+      @before-enter="beforeEnter"
+      @enter="enter"
+      @after-enter="afterEnter"
+      @enter-canceled="enterCanceled"
+      @before-leave="beforeLeave"
+      @leave="leave"
+      @after-leave="afterLeave"
+      @leave-canceled="leaveCanceled"
+    >
+      <div v-if="exibir2" class="caixa"></div>
+    </transition>
   </div>
 </template>
 
@@ -40,8 +56,38 @@ export default {
     return {
       msg: "Uma mensagem de informação para o usuário",
       exibir: false,
+      exibir2: true,
       tipoAnimacao: "fade",
     };
+  },
+  methods: {
+    beforeEnter(el) {
+      console.log("beforeEnter");
+    },
+    enter(el, done) {
+      console.log("enter");
+      done()
+    },
+    afterEnter(el) {
+      console.log("afterEnter");
+    },
+    enterCanceled() {
+      console.log("enterCanceled");
+    },
+
+	beforeLeave(el) {
+      console.log("beforeleave");
+    },
+    leave(el, done) {
+      console.log("leave");
+      done()
+    },
+    afterLeave(el) {
+      console.log("afterleave");
+    },
+    leaveCanceled() {
+      console.log("leaveCanceled");
+    },
   },
 };
 </script>
@@ -55,6 +101,13 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
   font-size: 1.5rem;
+}
+
+.caixa {
+  height: 100px;
+  width: 300px;
+  margin: 30px auto;
+  background-color: lightgreen;
 }
 
 .fade-enter,
