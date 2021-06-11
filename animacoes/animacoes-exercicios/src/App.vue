@@ -48,11 +48,29 @@
     >
       <div v-if="exibir2" class="caixa"></div>
     </transition>
+
+    <hr />
+    <div class="mb-4">
+      <b-button variant="primary" class="mr-2" @click="componenteSelecionado = 'AlertaInfo'">
+        Info</b-button>
+      <b-button
+        variant="secondary"
+        @click="componenteSelecionado = 'AlertaAdvertencia'">
+        Alerta
+      </b-button>
+    </div>
+    <transition name="fade" mode="out-in">
+      <component :is="componenteSelecionado"></component>
+    </transition>
   </div>
 </template>
 
 <script>
+import AlertaAdvertencia from "./AlertaAdvertencia.vue";
+import AlertaInfo from "./AlertaInfo.vue";
+
 export default {
+  components: { AlertaAdvertencia, AlertaInfo },
   data() {
     return {
       msg: "Uma mensagem de informação para o usuário",
@@ -60,13 +78,15 @@ export default {
       exibir2: true,
       tipoAnimacao: "fade",
       larguraBase: 0,
+      componenteSelecionado: "AlertaInfo",
     };
   },
   methods: {
-    animar(el, done, negativo){
-       let rodada = 1;
+    animar(el, done, negativo) {
+      let rodada = 1;
       const temporizador = setInterval(() => {
-        const novaLargura = this.larguraBase +(negativo ? -rodada * 10 : rodada * 10)
+        const novaLargura =
+          this.larguraBase + (negativo ? -rodada * 10 : rodada * 10);
         el.style.width = `${novaLargura}px`;
         rodada++;
         if (rodada > 30) {
@@ -81,7 +101,7 @@ export default {
       el.style.width = `${this.larguraBase}px`;
     },
     enter(el, done) {
-     this.animar(el, done, false)
+      this.animar(el, done, false);
     },
     // afterEnter(el) {
     //   console.log("afterEnter");
@@ -94,7 +114,7 @@ export default {
       el.style.width = `${this.larguraBase}px`;
     },
     leave(el, done) {
-      this.animar(el, done, true)
+      this.animar(el, done, true);
     },
     // afterLeave(el) {
     //   console.log("afterleave");
