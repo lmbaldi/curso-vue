@@ -9,11 +9,11 @@
 
 <script>
 export default {
-
   methods: {
     irParaInicio() {
-      //   this.$router.push('/')
-      this.$router.push({ path: "/" });
+      // this.$router.push('/')
+      // this.$router.push({ path: "/" });
+      this.$router.push({ name: 'inicio' });
     },
   },
 };
