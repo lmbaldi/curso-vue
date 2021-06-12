@@ -28,6 +28,7 @@ export default {
   props: ["id"],
   beforeRouteEnter(to, from, next) {
     //next();
+    //next(vm => {console.log(vm.id)})
     const autenticado = true;
     autenticado ? next() : next(false)
   },
