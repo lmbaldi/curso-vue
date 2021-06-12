@@ -5,19 +5,31 @@ import Usuario from './components/usuario/Usuario.vue'
 import UsuarioLista from './components/usuario/UsuarioLista.vue'
 import UsuarioDetalhe from './components/usuario/UsuarioDetalhe.vue'
 import UsuarioEditar from './components/usuario/UsuarioEditar.vue'
+import Menu from './components/template/Menu.vue'
+import MenuAlt from './components/template/MenuAlt.vue'
 
 Vue.use(Router)
 
 export default new Router({
+    mode: 'history',
     routes: [
         {
             path: '/',
             component: Inicio,
-            name: 'inicio',
+            //name: 'inicio',
+            components: {
+                default: Inicio,
+                menu: Menu,
+            }
         },
         {
             path: '/usuario',
-            component: Usuario,
+            //component: Usuario,
+            components: {
+                default: Usuario,
+                menu: MenuAlt,
+                menuInferior: MenuAlt,
+            },
             props: true,
             children: [
                 { path: '', component: UsuarioLista },
