@@ -1,6 +1,14 @@
 <template>
   <div id="app" class="container">
     <h1>HTTP com Axios</h1>
+    <b-alerta
+      show
+      dismissible
+      v-for="mensagem in mensagens"
+      :key="mensagem.texto"
+      :variant="mensagem.tipo"
+      >{{ mensagem.texto }}
+    </b-alerta>
     <b-card>
       <b-form-group label="Nome: ">
         <b-form-input
@@ -31,18 +39,26 @@
         <strong>Nome: </strong> {{ usuario.nome }}<br />
         <strong>E-mail: </strong> {{ usuario.email }}<br />
         <strong>ID: </strong> {{ id }}<br />
+        <b-button variant="warning" size="lg" @click="carregar(id)">
+          Carregar
+        </b-button>
+        <b-button variant="danger" size="lg" class="ml-2" @click="excluir(id)">
+          Excluir
+        </b-button>
       </b-list-group-item>
     </b-list-group>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 
 export default {
   data() {
     return {
+      mensagens: [],
       usuarios: [],
+      id: null,
       usuario: {
         nome: "",
         email: "",
@@ -50,11 +66,37 @@ export default {
     };
   },
   methods: {
+    limpar() {
+      this.usuario.nome = "";
+      this.usuario.email = "";
+      this.id = null;
+      this.mensagens = [];
+    },
     salvar() {
-      this.$http.post("usuarios.json", this.usuario).then((resp) => {
-        this.usuario.nome = "";
-        this.usuario.email = "";
+      const metodo = this.id ? "patch" : "post";
+      const finalUrl = this.id ? `/${this.id}.json` : ".json";
+      this.$http[metodo](`/usuarios${finalUrl}`, this.usuario).then(() => {
+        this.limpar();
+        this.mensagens.push({
+          texto: "Operação realizada com sucesso!",
+          tipo: "success",
+        });
       });
+    },
+    carregar(id) {
+      this.id = id;
+      this.usuario = { ...this.usuarios[id] };
+    },
+    excluir(id) {
+      this.$http
+        .delete(`/usuarios/${id}.json`)
+        .then(() => this.limpar)
+        .catch(_ => {
+          this.mensagens.push({
+            texto: "Problema ao excluir`!",
+            tipo: "danger",
+          });
+        });
     },
     obterUsuarios() {
       this.$http.get("usuarios.json").then((res) => {
