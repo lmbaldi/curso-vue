@@ -23,7 +23,7 @@ export default {
     return {
       result: false,
       questionMode: true,
-      questions,
+      questions: questions,
       currentQuestion: 0,
     };
   },

@@ -6,6 +6,12 @@
 
 <script>
 export default {
+	created(){
+		this.$http.post('usuarios.json',{
+			nome: 'Bianca',
+			email: 'bianca@bianca.com'
+		}).then(res => console.log("res ==>" +res))
+	}
 
 }
 </script>
