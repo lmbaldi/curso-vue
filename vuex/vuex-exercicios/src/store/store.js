@@ -15,8 +15,19 @@ export default new Vuex.Store({
         },
     },
     mutations: {
-        adicionarProduto(state, payload){
+        adicionarProduto(state, payload) {
             state.produtos.push(payload)
+        }
+    },
+    actions: {
+        //adicionarProduto(context, payload) {
+        //destructuring expoe o  metodo para fora do objto
+        adicionarProduto({ commit }, payload) {
+            setTimeout(() => {
+                //context.commit('adicionarProduto', payload)
+                commit('adicionarProduto', payload)
+            }, 1000)
         }
     }
 })
+
