@@ -1,4 +1,5 @@
 export default {
+    namespaced: true,
     state: {
         produtos: [],
     },
@@ -16,13 +17,8 @@ export default {
 
     },
     actions: {
-        //adicionarProduto(context, payload) {
-        //destructuring expoe o  metodo para fora do objto
         adicionarProduto({ commit }, payload) {
-            //setTimeout(() => {
-            //context.commit('adicionarProduto', payload)
             commit('adicionarProduto', payload)
-            //    }, 1000)
         }
     }
 }
