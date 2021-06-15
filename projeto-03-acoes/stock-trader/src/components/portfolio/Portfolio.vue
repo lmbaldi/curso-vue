@@ -1,16 +1,12 @@
 <template>
+  <div>
     <h2>Portfolio</h2>
-    <div>
-
-    </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        
-    }
+export default {};
 </script>
 
 <style>
-
 </style>

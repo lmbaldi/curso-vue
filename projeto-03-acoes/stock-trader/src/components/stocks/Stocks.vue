@@ -1,6 +1,8 @@
 <template>
-  <h2>Ações</h2>
-  <div></div>
+
+  <div>
+      <h2>Ações</h2>
+  </div>
 </template>
 
 <script>
