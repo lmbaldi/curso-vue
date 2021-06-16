@@ -40,7 +40,7 @@ export default {
         quantity: this.quantity,
       };
 
-      this.$tore.dispatch('buyStock', order)
+      this.$store.dispatch('buyStock', order)
       this.quantity = 0;
     },
   },
