@@ -30,7 +30,7 @@
     </v-card>
   </v-flex>
 </template>
-
+ 
 <script>
 import { mapActions } from "vuex";
 export default {
