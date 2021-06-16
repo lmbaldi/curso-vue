@@ -21,8 +21,10 @@
         <v-btn
           class="blue darken-3 white--text"
           @click="sellStock"
-          :disabled="insufficientQuantity || quantity <= 0 || !Number.isInteger(quantity)"
-          >{{ insufficientQuantity ? 'Insuficiente' : 'Vender'}}
+          :disabled="
+            insufficientQuantity || quantity <= 0 || !Number.isInteger(quantity)
+          "
+          >{{ insufficientQuantity ? "Insuficiente" : "Vender" }}
         </v-btn>
       </v-container>
     </v-card>
