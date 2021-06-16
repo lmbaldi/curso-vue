@@ -42,7 +42,7 @@ export default {
                     price: record.price,
                 }
             })
-        }
+        },
         funds(state){
             return state.funds
         }
