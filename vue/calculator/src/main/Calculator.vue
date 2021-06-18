@@ -28,7 +28,7 @@ import Button from "@/components/Button.vue";
 export default {
   data: function () {
     return {
-      displayValue: 0,
+      displayValue: "0",
       clearDisplay: false,
       operation: null,
       values: [0, 0],
@@ -38,9 +38,10 @@ export default {
   components: { Button, Display },
   methods: {
     clearMemory() {
-      Object.assign(this.data, this.$options.data());
+      Object.assign(this.$data, this.$options.data());
     },
     setOperation(operation) {
+      console.log(operation)
       if (this.current === 0) {
         this.operation = operation;
         this.current = 1;
@@ -64,6 +65,7 @@ export default {
     },
 
     addDigit(n) {
+      console.log(n)
       if (n === "." && this.displayValue.includes(".")) {
         return;
       }
