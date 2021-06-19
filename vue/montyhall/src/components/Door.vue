@@ -7,7 +7,7 @@
       <div class="number" :class="{ selected }">
         {{ number }}
       </div>
-      <div class="knob" :class="{ selected }" @click="open.stop = true"></div>
+      <div class="knob" :class="{ selected }" @click="open = true"></div>
     </div>
   </div>
 </template>
